@@ -1,0 +1,67 @@
+import smtplib
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>repl.it</title>
+</head>
+<body>
+	<script src="https://repl.it/lib/api.js"></script>
+    <script type="application/javascript">
+        TOKEN   = { time_created: 1485157877000,
+        msg_mac: 'sc3JMUOovIp2Hqdd51TK5szQROZyvl+Q1rUkTksEl+U=' }
+        var repl = new ReplitClient('api.repl.it', '80', 'python',TOKEN);
+        repl.connect().then(
+        function() {
+            document.querySelector('.status').innerHTML = 'connected';
+            start();
+        },
+        function() {
+            document.querySelector('status').innerHTML = 'failed';
+        }
+        );
+
+        function start() {
+            document.querySelector('button').onclick = function() {
+                repl.evaluate(
+                    document.querySelector('.id_codigodes').value,
+                     {
+                        stdout: function(str) {
+                            document.querySelector('.out').innerHTML += str + '\n';
+                        }
+                     }
+                ).then(
+                    function(result) {
+                        document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
+                    },
+                    function(err) {
+                        console.error(err);
+                    }
+                );
+            };
+        }
+    </script>
+
+{{ user.username }}
+    <div class="status">connecting..</div>
+    <form action="#" method="POST">{% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <label for="id_id_usuario"><small></small></label>{{form.id_usuario}}<br>
+        <p><label for="id_enlace">Enlace:</label> <input id="id_enlace" maxlength="500" name="enlace" type="text" required /></p>
+        <p><label for="id_codigodes">Codigodes:</label> <input id="id_codigodes" class="id_codigodes" maxlength="1000" name="codigodes" type="text" required /></p>
+
+
+        <input type="submit" value="submit">
+    </form>
+
+	<pre class="result">results: </pre>
+	<pre class="out">output: </pre>
+	<button>run</button>
+
+    <a href="/logout/">SALIR</a>
+</body>
+</html>

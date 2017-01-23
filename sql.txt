@@ -1,0 +1,32 @@
+create database cuentas owner postgres;
+
+CREATE TABLE usuarios(iduser integer PRIMARY KEY NOT NULL, username VARCHAR(50) NOT NULL, pass VARCHAR(500) NOT NULL);
+CREATE TABLE codigo(idcodigo integer PRIMARY KEY NOT NULL, iduser integer NOT NULL,  enlace VARCHAR(500) NOT NULL, codigodes VARCHAR(1000) NOT NULL, CONSTRAINT iduser FOREIGN KEY(iduser) REFERENCES USUARIOS(iduser));
+
+galo-->	
+CREATE TABLE USUARIO (id_ususario INT PRIMARY KEY NOT NULL, usuario VARCHAR(50) NOT NULL, clave VARCHAR(50) NOT NULL);
+CREATE TABLE CODIGO (id_codigo INT PRIMARY KEY NOT NULL, id_usuario INT  NOT NULL REFERENCES  USUARIO (id_usuario), link VARCHAR(250), cod_fuente VARCHAR(2000));
+
+-->admin
+admin
+pamelita2015
+
+usuario_id=request.user.pk
+
+def compila(request):
+    usuario_id = request.user.pk
+    print usuario_id
+    print "sssssssssss"
+    ctx = {}
+    if request.method == 'POST':
+        formulario = CodigoForm(request.POST, instance=request.user.pk)
+        if formulario.is_valid():
+            compi=formulario.save(commit=False)
+            compi.id_usuario=usuario_id
+            compi.save()
+            return redirect(compila)
+    else:
+        formulario = CodigoForm(instance=request.user.pk)
+    ctx['formulario'] = formulario
+    return render(request,'compila.html', ctx)
+

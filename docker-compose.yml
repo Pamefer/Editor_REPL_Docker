@@ -1,0 +1,38 @@
+version: '2'
+services:
+   db:
+     image: postgres
+     environment:
+      - POSTGRES_DB=cuenta
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+     volumes:
+      - db_data:/var/lib/postgresql/data/pgdata
+
+   app:
+     build: .
+     command: bash -c 'sleep 5 && python manage.py migrate && python manage.py runserver 0.0.0.0:8080'
+     volumes:
+       - .:/code
+     ports:
+       - "8080:8080"
+     depends_on:
+       - db
+   web:
+     build: nginx/.
+     volumes:
+       - static:/static
+     depends_on:
+       - app
+     restart: always
+     ports:
+       - "80:80"
+volumes:
+   . :
+       external: true
+   static:
+       external: true
+   db_data:
+       external: true
+

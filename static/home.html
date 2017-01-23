@@ -1,0 +1,88 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{##}
+{##}
+{#<body>#}
+{#<form class="post-form" method="POST" action="#"><!--name="formUser"-->#}
+{#    {% csrf_token %}#}
+{#    {% for hidden in formulario.hidden_fields %}#}
+{#        {{ hidden }}#}
+{#    {% endfor %}#}
+{#    <label for="username"><small></small></label><input type="text" name="username" value=""><br>#}
+{#    <label for="password"><small></small></label><input type="password" name="password" value=""><br>#}
+{#     <input type="submit" value="submit">#}
+{#</form>#}
+{#</body>#}
+{##}
+{##}
+{#</html>#}
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+ {% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Magical Login Form Flat Responsive Widget Template :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Magical Login Form template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free web designs for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{{STATIC_URL}}static/static/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- //Custom Theme files -->
+<!-- web font -->
+<link href='//fonts.googleapis.com/css?family=Text+Me+One' rel='stylesheet' type='text/css'>
+<!-- //web font -->
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Bienvenido a Código en Línea</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+
+
+				<form action="#" method="post">
+                    {% csrf_token %}
+					<input class="text" type="text" name="username" placeholder="Username" required="" value="">
+					<input class="text" type="password" name="password" placeholder="Password" required="" value="">
+
+
+					<input type="submit" value="LOGIN">
+				</form>
+
+
+				<p>No tienes una cuenta?<a href="#"> Registrate, aquí!</a></p>
+			</div>
+		</div>
+		<!-- copyright -->
+		<div class="w3copyright-agile">
+			<p> Derechos Reservados por @Pamm</p>
+		</div>
+		<!-- //copyright -->
+		<ul class="w3lsg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+</body>
+</html>
